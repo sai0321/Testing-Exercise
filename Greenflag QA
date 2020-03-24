@@ -1,0 +1,31 @@
+Feature: Log In to https://greenflag-qa-experience.dev.mycro.app/login
+This feature allows a user to login to the green flag qa expereince website.
+
+#Assumptions:
+*The user has a valid login credential already registered
+*The user has a valid password
+*The user is able to open the given link in any given browser
+
+#Scenario: Credentials Validation
+Given the user is on the greenflag qa experience page
+When the user inputs a valid username in the "Username" field and 
+the user inputs a valid password in the "Password" field
+Then the "Log In" button becomes enabled for the user to log in.
+
+#Scenario: Invalid Credentials Response
+Given the user is on the greenflag qa expereince page
+When the user inputs an invalid username in the "Username" field and 
+the user inputs an invalid password in the "Password" field
+Then the "Log In" button must remain disabled and 
+and the system must display "Error Message" under both the "Username" and "Password" fields
+
+#Scenario: Log In with valid credentials
+Given the user inputs "qa@greenflag.com" in the "Username" field
+and "Password1" in the "Password" field
+and the "Log In" button becomes enabled
+When the user clicks on the "Log In" button
+Then the system must sign the user in 
+and display the "Successfully logged in" message in a new screen.
+
+#Assumptions:
+The user is already on the greenflag qa experience page
