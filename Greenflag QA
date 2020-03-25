@@ -6,26 +6,72 @@ This feature allows a user to login to the green flag qa expereince website.
 *The user has a valid password
 *The user is able to open the given link in any given browser
 
+#Scenario: Screen Elements Check
+Given the user opens the link "https://greenflag-qa-experience.dev.mycro.app"
+When the link successfully opens
+Then the user must see a "Username" field, a "Password" field and a "Log In" button below which is in Pink
+
 #Scenario: Credentials Validation
 Given the user is on the greenflag qa experience page
 When the user inputs a valid username in the "Username" field and 
-the user inputs a valid password in the "Password" field
+the user inputs a valid password of 8-16 characters in the "Password" field
 Then the "Log In" button becomes enabled for the user to log in.
+
+#Scenario: Charaters entered in the Password field is masked as Asterisk or Bullet characters
+Given the user has already entered the Username in the "Username" field
+When the user enters Password in the "Password" field
+Then the Password is masked as Asterisk or Bullet characters
 
 #Scenario: Invalid Credentials Response
 Given the user is on the greenflag qa expereince page
 When the user inputs an invalid username in the "Username" field and 
 the user inputs an invalid password in the "Password" field
-Then the "Log In" button must remain disabled and 
+Then the "Log In" button must remain disabled  
 and the system must display "Error Message" under both the "Username" and "Password" fields
+
+#Scenario: Blank Fields
+Given the user is on the greenflag qa expereince page
+When the user enters a valid Username in the "Username" field
+and leaves the "Password" field is left blank
+Then the "Log In" button must remain disabled 
+and "Error message" is displayed under the "Password" field
+
+Given the user is on the greenflag qa expereince page
+When the user leaves the "Username" field blank 
+and enters a Password in the "Password" field
+Then the "Log In" button must remain disabled 
+and "Error message" is displayed under the "Username" field
 
 #Scenario: Log In with valid credentials
 Given the user inputs "qa@greenflag.com" in the "Username" field
 and "Password1" in the "Password" field
 and the "Log In" button becomes enabled
 When the user clicks on the "Log In" button
+Or the user hits the return key
 Then the system must sign the user in 
 and display the "Successfully logged in" message in a new screen.
 
 #Assumptions:
-The user is already on the greenflag qa experience page
+*The user is already on the greenflag qa experience page
+
+#Scenario: Navigating back to the Login Screen
+Given the user has successfully logged in
+When the user taps on the back button on the browser
+Then the user must be returned to the "Login" screen with the "Username" and "Password" fields cleared
+
+
+#Scenario: Minimum and Maximum Characters for Password field
+Given the user enters a valid username in the "Username" field
+When the user inputs a password which is less than 8 characters in the Password field
+or the user inputs a password which is more than 16 characters in the Password field
+
+Then the "Log In" button must remain disabled 
+and "Error message" is displayed under the "Username" field
+
+#Any email with a valid domain is accepted as a Username
+#Any password with 8-16 characters is accepted as a Password
+
+#Scenario: Cross Platform 
+Given the user has multiple browsers
+When the user enters the link in each of those browsers
+Then the link must open in all of those browsers
