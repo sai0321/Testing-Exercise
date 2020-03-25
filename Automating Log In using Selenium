@@ -1,0 +1,14 @@
+public class Automate
+{
+public Static void main(String[] args)
+{
+Webdriver driver = new ChromeDriver();
+driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+driver.get("https://greenflag-qa-experience.dev.mycro.app")
+driver.findElement(By.id("Username")).sendKeys("qa@greenflag.com");
+driver.findElement(By.id("Password")).sendKeys("Password1");
+driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+driver.findElement(By.id("LogIn")).click();
+driver.close();
+}
+}
